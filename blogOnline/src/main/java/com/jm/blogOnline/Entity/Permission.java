@@ -18,5 +18,5 @@ public class Permission {
     private Long idPermission;
 
     @Column(unique = true, nullable = false)
-    private String permmisionName;
+    private String permissionName;
 }

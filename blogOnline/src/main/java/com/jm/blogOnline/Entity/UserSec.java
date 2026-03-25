@@ -38,6 +38,6 @@ public class UserSec {
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> rolList = new HashSet<>();
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "userSec")
     private Author author;
 }

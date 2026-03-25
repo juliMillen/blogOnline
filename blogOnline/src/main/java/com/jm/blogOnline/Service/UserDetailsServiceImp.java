@@ -42,7 +42,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
         newUser.getRolList().stream()
                 .flatMap(role -> role.getPermissions().stream())
-                .forEach(permission -> grantedAuthorities.add(new SimpleGrantedAuthority(permission.getPermmisionName())));
+                .forEach(permission -> grantedAuthorities.add(new SimpleGrantedAuthority(permission.getPermissionName())));
 
         return new User(newUser.getUsername(),
                 newUser.getPassword(),
