@@ -7,6 +7,7 @@ import com.jm.blogOnline.Service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/blog/role")
+@PreAuthorize("isAuthenticated()")
 public class RoleController {
     @Autowired
     private RoleService roleService;
@@ -24,6 +26,7 @@ public class RoleController {
     private PermissionService permissionService;
 
     @GetMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Role>> getRoles()
     {
         List<Role> listRoles = roleService.findAll();
@@ -31,6 +34,7 @@ public class RoleController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role>  getRoleById(@PathVariable Long id)
     {
         Optional<Role> role = roleService.findById(id);
@@ -38,6 +42,7 @@ public class RoleController {
     }
 
     @PostMapping("/create")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role> createRole(@RequestBody Role role)
     {
         Set<Permission> permissionsList = new HashSet<>();
@@ -56,6 +61,7 @@ public class RoleController {
     }
 
     @PatchMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Role>  updateRole(@RequestBody Role role)
     {
         Role updatedRole = roleService.findById(role.getIdRole()).orElse(null);
@@ -64,6 +70,7 @@ public class RoleController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteById(@PathVariable Long id)
     {
         roleService.deleteById(id);
