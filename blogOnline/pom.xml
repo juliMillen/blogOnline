@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>com.jm</groupId>
 	<artifactId>blogOnline</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
+	<version>0.0.1</version>
+	<name>blogOnline</name>
 	<description/>
 	<url/>
 	<licenses>
