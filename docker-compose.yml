@@ -8,9 +8,13 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/blogDB
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 42576661
+      SS_USER: juliMillen
+      SS_PASSWORD: 12345
+      DB_URL: jdbc:postgresql://db:5432/blogDB
+      DB_USERNAME: postgres
+      DB_PASSWORD: 42576661
+      GITHUB_CLIENT_ID: Ov23litDKlk7R6jEDPop
+      GITHUB_CLIENT_SECRET: 38ffae38b82cf733d5ff988358d15e4e79eb95d3
     depends_on:
       db:
         condition: service_healthy
