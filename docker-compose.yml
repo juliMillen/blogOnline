@@ -20,7 +20,7 @@ services:
     image: postgres:16
     container_name: blog_db
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_DB: blogDB
       POSTGRES_USER: postgres
