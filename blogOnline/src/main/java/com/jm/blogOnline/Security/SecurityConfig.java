@@ -28,8 +28,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity, JwtUtils jwtUtils) throws Exception{
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
-                .httpBasic(Customizer.withDefaults())
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2Login(oauth -> oauth
+                        .successHandler((request,response,authentication) -> {
+                            String jwt = jwtUtils.createToken(authentication);
+
+                            response.setContentType("application.json");
+                            response.getWriter().write("{\"token\": \"" + jwt + "\"}");
+                        }))
                 .addFilterBefore(new JwtTokenValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();
     }
