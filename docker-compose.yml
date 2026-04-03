@@ -29,11 +29,12 @@ services:
       POSTGRES_DB: blogDB
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 42576661
-    restart: always
+    restart: on-failure
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U postgres -d blogDB"]
+      interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
+      start_period: 30s
 
 
